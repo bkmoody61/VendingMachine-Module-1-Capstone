@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Capstone.Classes;
+using System;
+using System.Collections.Generic;
 
 namespace Capstone
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ProductLoader product1 = new ProductLoader();
+            Dictionary<string, Product>products = product1.MainLoader();
+            foreach(var kvp in products)
+            {
+                Console.WriteLine(kvp.Key +" "+ kvp.Value.Name + " " + kvp.Value.Price + " " + kvp.Value.Category);
+            }
+            //Console.WriteLine();
         }
     }
 }
