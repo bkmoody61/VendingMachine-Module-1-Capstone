@@ -17,6 +17,8 @@ namespace Capstone.Views
         {
             VendingMachine = vendingMachine;
 
+
+
             ConsoleMenu mainMenu = new ConsoleMenu();
             mainMenu.AddOption("Display Vending Machine Items", DisplayVendingItems)
                     .AddOption("Purchase", Purchase)
