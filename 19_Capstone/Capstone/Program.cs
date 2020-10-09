@@ -2,6 +2,10 @@
 using Capstone.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Capstone
 {
@@ -14,17 +18,17 @@ namespace Capstone
 
             VendingMachine vendingMachine = new VendingMachine();
             MainMenu mainMenu = new MainMenu(vendingMachine);
-            mainMenu.Show();
+                    
          
 
-            //    ProductLoader product1 = new ProductLoader();
-            //    Dictionary<string, Product>products = product1.MainLoader();
-            //    foreach(var kvp in products)
-            //    {
-            //        Console.WriteLine(kvp.Key +" "+ kvp.Value.Name + " " + kvp.Value.Price + " " + kvp.Value.Category);
-            //    }
-            //    //Console.WriteLine();
-            //}
+          
+
+           
+
+
+
         }
+
+      
     }
 }

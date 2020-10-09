@@ -12,7 +12,7 @@ namespace Capstone.Classes
 
         public Dictionary<string, Product> Inventory { get; set; }
 
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; private set; } = 0;
 
 
         // Constructor
@@ -31,16 +31,19 @@ namespace Capstone.Classes
 
         // Methods
 
-
+       
 
         //Feed Money
-       
+
         public decimal MoneyFeeder(int deposit)
         {
-           
+            string feedMoney = "FEED MONEY:";
+            decimal initialBalance = Balance;
             Balance += deposit;
+            TransactionLog(feedMoney, initialBalance);
             return Balance;
-           
+            
+          
         }
 
 
@@ -64,8 +67,11 @@ namespace Capstone.Classes
             else
             {
                 Dispense(code);
+                decimal initialBalance = Balance;
                 Balance -= Inventory[code].Price;
                 Inventory[code].Quantity--;
+                TransactionLog(Inventory[code].Name + " " + code, initialBalance);
+             
             }
           
         }
@@ -121,10 +127,24 @@ namespace Capstone.Classes
                 change = change % 0.05m;
 
             }
+           
             Console.WriteLine($"Vending machine has dispensed {quarters} quarters, {dimes} dimes, and {nickels} nickels.  Please take your change.");
 
+            string giveChange = "GIVE CHANGE:";
+            decimal initialBalance = Balance;
+            Balance -= Balance;
+            TransactionLog(giveChange, initialBalance);
         }
-      
+        public void TransactionLog(string functionName, decimal initialBalance)
+        {
+            string logPath = @"..\..\..\Data\Log.txt";
+
+            using (StreamWriter writer = new StreamWriter(logPath, true))
+            {
+                writer.WriteLine($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt")} {functionName} {initialBalance:C} {Balance:C}");
+            }
+        }
+
 
     }
 }
