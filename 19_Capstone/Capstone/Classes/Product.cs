@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Capstone.Classes
@@ -14,22 +15,27 @@ namespace Capstone.Classes
 
         public string Category { get; set; }
 
-        ///public string Slot { get; set; }
+        public int Quantity { get; set; } 
 
-        public int Quantity { get; set; } // Should quantity be part of the Product or assigned in the vending
-        // machine.
 
         // Constructors
 
         public Product(string name, decimal price, string category, int quantity)
         {
-            //Slot = slot;
+           
             Name = name;
             Price = price;
             Category = category;
             Quantity = quantity;
             
             
+        }
+
+        // Methods
+
+        public override string ToString()
+        {
+            return Name + " " + Price + " " + Category + " " + Quantity;
         }
     }
 }
