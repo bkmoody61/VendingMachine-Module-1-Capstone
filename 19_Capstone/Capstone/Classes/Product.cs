@@ -16,17 +16,19 @@ namespace Capstone.Classes
 
         ///public string Slot { get; set; }
 
-        //public int Quantity { get; set; } // Should quantity be part of the Product or assigned in the vending
+        public int Quantity { get; set; } // Should quantity be part of the Product or assigned in the vending
         // machine.
 
         // Constructors
 
-        public Product(string name, decimal price, string category)
+        public Product(string name, decimal price, string category, int quantity)
         {
             //Slot = slot;
             Name = name;
             Price = price;
             Category = category;
+            Quantity = quantity;
+            
             
         }
     }

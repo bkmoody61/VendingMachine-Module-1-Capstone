@@ -17,6 +17,9 @@ namespace Capstone.Views
 
 
         }
+
+        //use product loader to create a dictionary of products and put into vending machine and then put vending machine in main menu.
+
         //public void DisplayInventory()
         //{
         //    ProductLoader product1 = new ProductLoader();

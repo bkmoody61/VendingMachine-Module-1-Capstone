@@ -26,7 +26,8 @@ namespace Capstone.Classes
                     string name = fields[1];
                     decimal price = decimal.Parse(fields[2]);
                     string category = fields[3];
-                    Product product = new Product(name, price, category);
+                    int quantity = 5;
+                    Product product = new Product(name, price, category, quantity);
                     products.Add(slot, product);
 
                 }
