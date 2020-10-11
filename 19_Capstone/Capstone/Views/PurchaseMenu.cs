@@ -2,6 +2,7 @@
 using MenuFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Capstone.Views
@@ -54,10 +55,12 @@ namespace Capstone.Views
         }
         private MenuOptionResult FinishTransaction()
         {
-         
-            VendingMachine.CompleteTransaction();       
+
+            Console.WriteLine($"Your change is {VendingMachine.Balance:C}");
+            Console.WriteLine(VendingMachine.CompleteTransaction());
             return MenuOptionResult.WaitThenCloseAfterSelection;
 
         }
+
     }
 }

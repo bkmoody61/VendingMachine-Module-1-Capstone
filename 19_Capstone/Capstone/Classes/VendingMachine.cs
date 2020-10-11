@@ -63,18 +63,15 @@ namespace Capstone.Classes
         {
             if (!Inventory.ContainsKey(code))
             {
-                LocationMessage = "You did not enter a valid location.";
-                //Console.WriteLine("You did not enter a valid location"); //Did not enter a valid code
+                LocationMessage = "Slot location not found.";
             }
             else if (Inventory[code].Quantity < 1)  // if quantity is less than 1.  Sold Out.
             {
                 LocationMessage = "SOLD OUT";
-                //Console.WriteLine("SOLD OUT");
             }
             else if(Balance < Inventory[code].Price)
             {
                 LocationMessage = "Please deposit more money or make another selection.";
-                //Console.WriteLine("Please deposit more money or make another selection");
             }
             else
             {
@@ -93,40 +90,33 @@ namespace Capstone.Classes
 
         public string Dispense(string code)
         {
-            // print name, cost, and money remaining
-            //Console.WriteLine($"{Inventory[code].Name}, {Inventory[code].Price}, {remainingMoney}");
             if (!Inventory.ContainsKey(code))
             {
-                DispenseMessage = "Please select a valid location.";
+                DispenseMessage = "Please enter a capital letter followed by a number.";
             }
             else if (Inventory[code].Category == "Chip")
             {
                 DispenseMessage = "Crunch Crunch, Yum!";
-                //Console.WriteLine("Crunch Crunch, Yum!"); 
             }
             else if (Inventory[code].Category == "Candy")
             {
                 DispenseMessage = "Munch Munch, Yum!";
-                //Console.WriteLine("Munch Munch, Yum!");
             }
             else if (Inventory[code].Category == "Drink")
             {
                 DispenseMessage = "Glug Glug, Yum!";
-                //Console.WriteLine("Glug Glug, Yum!");
             }
             else if (Inventory[code].Category == "Gum")
             {
                 DispenseMessage = "Chew Chew, Yum!";
-                //Console.WriteLine("Chew Chew, Yum!");
             }
             return DispenseMessage;
         }
 
         // Finish Transaction
-        public void CompleteTransaction()
+        public string CompleteTransaction()
         {
-            Console.WriteLine($"Your change is {Balance:C}");
-
+          
             decimal change = Balance;
 
             decimal quarters = 0;
@@ -152,12 +142,13 @@ namespace Capstone.Classes
 
             }
            
-            Console.WriteLine($"Vending machine has dispensed {quarters} quarters, {dimes} dimes, and {nickels} nickels.  Please take your change.");
-
             string giveChange = "GIVE CHANGE:";
             decimal initialBalance = Balance;
             Balance -= Balance;
             TransactionLog(giveChange, initialBalance);
+            return ($"Vending machine has dispensed {quarters} quarters, {dimes} dimes, and {nickels} nickels.  Please take your change.");
+
+
         }
         public void TransactionLog(string functionName, decimal initialBalance)
         {
