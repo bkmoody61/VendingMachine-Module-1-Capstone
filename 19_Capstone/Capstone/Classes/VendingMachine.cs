@@ -37,13 +37,19 @@ namespace Capstone.Classes
 
         public decimal MoneyFeeder(int deposit)
         {
-            string feedMoney = "FEED MONEY:";
-            decimal initialBalance = Balance;
-            Balance += deposit;
-            TransactionLog(feedMoney, initialBalance);
+            if (deposit > 0)
+            {
+                string feedMoney = "FEED MONEY:";
+                decimal initialBalance = Balance;
+                Balance += deposit;
+                TransactionLog(feedMoney, initialBalance);
+                return Balance;
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid deposit.");
+            }
             return Balance;
-            
-          
         }
 
 
@@ -76,13 +82,15 @@ namespace Capstone.Classes
           
         }
 
+
+
         public void Dispense(string code)
         {
             // print name, cost, and money remaining
             //Console.WriteLine($"{Inventory[code].Name}, {Inventory[code].Price}, {remainingMoney}");
             if (Inventory[code].Category == "Chip")
             {
-                Console.WriteLine("Crunch Crunch, Yum!");
+                Console.WriteLine("Crunch Crunch, Yum!"); 
             }
             if (Inventory[code].Category == "Candy")
             {
@@ -137,7 +145,7 @@ namespace Capstone.Classes
         }
         public void TransactionLog(string functionName, decimal initialBalance)
         {
-            string logPath = @"..\..\..\Data\Log.txt";
+            string logPath = @"..\..\..\..\Log.txt";
 
             using (StreamWriter writer = new StreamWriter(logPath, true))
             {

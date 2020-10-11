@@ -11,7 +11,7 @@ namespace Capstone.Classes
         { 
            Dictionary<string, Product> ProductDictionary = new Dictionary<string, Product>();
 
-           string filePath = @"..\..\..\Data\vendingmachine.csv";
+           string filePath = @"..\..\..\..\vendingmachine.csv";
 
             try
             {
