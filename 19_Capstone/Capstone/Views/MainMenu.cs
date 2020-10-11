@@ -12,7 +12,7 @@ namespace Capstone.Views
         // Properties
 
         private VendingMachine VendingMachine;
-        //private ProductSelector ProductSelector;
+   
 
 
         // Constructor

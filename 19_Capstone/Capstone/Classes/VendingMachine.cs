@@ -135,25 +135,25 @@ namespace Capstone.Classes
             while (change >= 0.25m)
             {
                 quarters = Math.Truncate((change / 0.25m));   // returns integer part of a number by removing any fractional digits
-                change = change % 0.25m;                       // sets change equal to (change / .25) if the remainder is 0
+                change = change % 0.25m;                       // sets change equal to (change % .25) the remainder of the change less the portion assigned to quarters
             }
 
             while (change >= 0.10m)
             {
                 dimes = Math.Truncate((change / 0.10m));
-                change = change % 0.10m;
+                change = change % 0.10m;                    // sets change equal to (change % .10) the remainder of the change less the portion assigned to dimes
             }
 
             while (change >= 0.05m)
             {
                 nickels = Math.Truncate((change / 0.05m));
-                change = change % 0.05m;
+                change = change % 0.05m;                     // sets change equal to (change % .05) the remainder of the change less the portion assigned to nickels.  Should be zero.
 
             }
            
             string giveChange = "GIVE CHANGE:";
-            decimal initialBalance = Balance;                           // assigns balance of 0 to a variable called initialBalance                            
-            Balance -= Balance;                                         // decrements balance
+            decimal initialBalance = Balance;                           // assigns balance prior to dispensing change to a variable called initialBalance                            
+            Balance -= Balance;                                         // decrements balance to zero.  Effectively paying the customer back.
             TransactionLog(giveChange, initialBalance);                 // calls TransactionLog, which returns a string and the remaining balance (which is 0 since all change has been given)
             return ($"Vending machine has dispensed {quarters} quarters, {dimes} dimes, and {nickels} nickels.  Please take your change.");
 

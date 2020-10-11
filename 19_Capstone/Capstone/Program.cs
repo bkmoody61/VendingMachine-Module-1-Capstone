@@ -17,14 +17,7 @@ namespace Capstone
         {
 
             VendingMachine vendingMachine = new VendingMachine();
-            MainMenu mainMenu = new MainMenu(vendingMachine);
-                    
-         
-
-          
-
-           
-
+            MainMenu mainMenu = new MainMenu(vendingMachine);      
 
 
         }

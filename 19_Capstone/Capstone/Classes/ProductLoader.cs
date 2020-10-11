@@ -29,9 +29,9 @@ namespace Capstone.Classes
                         string name = fields[1];                        // in fields[], the second index is declared the name (type = string) 
                         decimal price = decimal.Parse(fields[2]);       // in fields[], the third index is declared the price (type = decimal) and that element is converted to a decimal 
                         string category = fields[3];                    // in fields[], the fourth index is declared the category (type = string) 
-                        int quantity = 5;                                                   // quantity is declared as 5, representing the inventory of each product
+                        int quantity = 5;                                                   // quantity is declared as 5, representing the initial inventory of each product
                         Product product = new Product(name, price, category, quantity);     // Product type is instantiated, which includes the listed variables
-                        ProductDictionary.Add(slot, product);                               // the contents of field[0] and contents of Product are added to the ProductDictionary
+                        ProductDictionary.Add(slot, product);                               // the contents of field[0] (key of dictionalry) and contents of Product (value of dictionary) are added to the ProductDictionary
 
                     }
                    
