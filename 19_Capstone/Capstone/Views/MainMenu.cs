@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Capstone.Views
 {
-    public class MainMenu : ConsoleMenu // inherits ConsoleMenu 
+    public class MainMenu : ConsoleMenu // inherits from ConsoleMenu 
     {
         // Properties
 
@@ -22,7 +22,7 @@ namespace Capstone.Views
 
 
 
-            ConsoleMenu mainMenu = new ConsoleMenu();
+            ConsoleMenu mainMenu = new ConsoleMenu();                   // new menu is created named mainMenu
             mainMenu.AddOption("Display Vending Machine Items", DisplayVendingItems)
                     .AddOption("Purchase", DisplayPurchaseMenu)
                     .AddOption("Exit", Exit);
@@ -41,14 +41,17 @@ namespace Capstone.Views
 
         private MenuOptionResult DisplayVendingItems()
         {
-            VendingMachine.DisplayInventory();
+            VendingMachine.DisplayInventory();                      // Calls DisplayInventory method from the VendingMachine class
             return MenuOptionResult.WaitAfterMenuSelection;
 
         }
 
+
+        // When DisplayPurchaseMenu is called, it creates and shows a new method named purchaseMenu, 
+        // which passes through the VendingMachine Class
         private MenuOptionResult DisplayPurchaseMenu()
         {
-            PurchaseMenu purchaseMenu = new PurchaseMenu(VendingMachine);
+            PurchaseMenu purchaseMenu = new PurchaseMenu(VendingMachine); 
             purchaseMenu.Show();
             return MenuOptionResult.WaitAfterMenuSelection;
         }

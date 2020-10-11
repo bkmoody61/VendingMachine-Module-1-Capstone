@@ -33,6 +33,7 @@ namespace Capstone.Classes
 
         // Methods
 
+        // When ToString is called, it returns list of properties formatted with spacing
         public override string ToString()
         {
             return Name + " " + Price + " " + Category + " " + Quantity;
