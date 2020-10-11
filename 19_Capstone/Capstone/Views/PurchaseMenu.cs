@@ -46,7 +46,9 @@ namespace Capstone.Views
         private MenuOptionResult SelectProduct()
         {
             string code = GetString("Enter product slot location:");
-            VendingMachine.ProductSelector(code);         
+            //VendingMachine.ProductSelector(code);
+            Console.WriteLine(VendingMachine.ProductSelector(code));
+            Console.WriteLine(VendingMachine.Dispense(code));
             return MenuOptionResult.WaitAfterMenuSelection;
 
         }

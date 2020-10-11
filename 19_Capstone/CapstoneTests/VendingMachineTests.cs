@@ -5,16 +5,6 @@ using System.Collections.Generic;
 
 namespace CapstoneTests
 
-/*        
- *        public decimal MoneyFeeder(int deposit)
-    {
-        string feedMoney = "FEED MONEY:";
-        decimal initialBalance = Balance;
-        Balance += deposit;
-        TransactionLog(feedMoney, initialBalance);
-        return Balance;
-
-    }*/
 {
     [TestClass]
     public class VendingMachineTests
@@ -28,17 +18,12 @@ namespace CapstoneTests
         public void MoneyFeederTest1(int input, double expected)
         {
             //Arrange
-
             VendingMachine test = new VendingMachine();
 
-
             //Act
-
             decimal inputResult = Convert.ToDecimal(input);
             decimal expectedResult = Convert.ToDecimal(expected);
             decimal actual = test.MoneyFeeder((int)inputResult);
-
-
 
             //Assert
             Assert.AreEqual(expectedResult, actual);
@@ -47,22 +32,17 @@ namespace CapstoneTests
         }
 
 
-      
+
         [TestMethod]
         public void ProductSelectorTest1()
         {
             // Arrange
             VendingMachine test = new VendingMachine();
-
             string code = "A1";
-
-            // test.Inventory[code].Quantity = 5; (not needed) 
-
 
             // Act
             test.MoneyFeeder(5);
             test.ProductSelector(code);
-           
 
             // Assert
             Assert.AreEqual(4, test.Inventory[code].Quantity);
@@ -70,49 +50,127 @@ namespace CapstoneTests
         }
 
 
-        //[TestMethod]
-        //public void ProductSelectorTest2()
-        //{
-        //    //Arrange
-        //   VendingMachine test = new VendingMachine();
-
-        //    string code = "a1";
-
-
-        //    //Act
-        //        test.MoneyFeeder(5);
-        //    test.ProductSelector(code);
-
-        //    //Assert
-        //    Assert.ThrowsException<KeyNotFoundException>(() => test.ProductSelector(code));
-
-
-
-        //}
-
-
-        /* -- COMPLETE TRANSACTION -- 
-         * string giveChange = "GIVE CHANGE:";
-            decimal initialBalance = Balance;
-            Balance -= Balance;
-            TransactionLog(giveChange, initialBalance);
-        */
-
         [TestMethod]
-        public void CompleteTransactionTest()
+        public void ProductSelectorTest2()
         {
             //Arrange
             VendingMachine test = new VendingMachine();
-
+            string code = "a1";
 
             //Act
+            test.MoneyFeeder(5);
+            string actualResult = test.ProductSelector(code);
+            string expectedResult = "You did not enter a valid location.";
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
 
 
-
-            // Arrange 
         }
 
+        [TestMethod]
+        public void ProductSelectorTest3()
+        {
+            //Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "A1";
 
+            //Act
+            test.MoneyFeeder(0);
+            string actualResult = test.ProductSelector(code);
+            string expectedResult = "Please deposit more money or make another selection.";
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+
+        [TestMethod]
+        public void ProductSelectorTest4()
+        {
+            //Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "";
+
+            //Act
+            test.MoneyFeeder(5);
+            string actualResult = test.ProductSelector(code);
+            string expectedResult = "You did not enter a valid location.";
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        
+        }
+        
+        [TestMethod]
+        public void ProductSelectorTest5()
+        {
+            // Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "B1";
+
+            // Act
+            test.MoneyFeeder(5);
+            test.ProductSelector(code);
+            test.ProductSelector(code);
+
+            // Assert
+            Assert.AreEqual(3, test.Inventory[code].Quantity);
+
+        }
+        
+        [TestMethod]
+        public void ProductSelectorTest6()
+        {
+            // Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "B1";
+
+            // Act
+            test.MoneyFeeder(5);
+            test.ProductSelector(code);
+
+            // Assert
+            Assert.AreEqual(3.20M, test.Balance);
+
+        }
+       
+        [TestMethod]
+        public void DispenseTest1()
+        {
+            // Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "A1";
+
+            // Act
+            test.MoneyFeeder(5);
+            string actualResult = test.Dispense(code);
+            string expectedResult = "Crunch Crunch, Yum!";
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+
+        [TestMethod]
+        public void DispenseTest2()
+        {
+            // Arrange
+            VendingMachine test = new VendingMachine();
+            string code = "B1";
+
+            // Act
+            test.MoneyFeeder(5);
+            string actualResult = test.Dispense(code);
+            string expectedResult = "Munch Munch, Yum!";
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+
+        }
+     
 
     }
 }
+

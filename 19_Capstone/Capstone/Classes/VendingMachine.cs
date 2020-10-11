@@ -14,6 +14,10 @@ namespace Capstone.Classes
 
         public decimal Balance { get; private set; } = 0;
 
+        public string LocationMessage { get; private set; }
+
+        public string DispenseMessage { get; private set; }
+
 
         // Constructor
         public VendingMachine()
@@ -54,21 +58,23 @@ namespace Capstone.Classes
 
 
         //Select Product
-
-
-        public void ProductSelector(string code)
+        
+        public string ProductSelector(string code)
         {
             if (!Inventory.ContainsKey(code))
             {
-                Console.WriteLine("You did not enter a valid location"); //Did not enter a valid code
+                LocationMessage = "You did not enter a valid location.";
+                //Console.WriteLine("You did not enter a valid location"); //Did not enter a valid code
             }
             else if (Inventory[code].Quantity < 1)  // if quantity is less than 1.  Sold Out.
             {
-                Console.WriteLine("SOLD OUT");
+                LocationMessage = "SOLD OUT";
+                //Console.WriteLine("SOLD OUT");
             }
             else if(Balance < Inventory[code].Price)
             {
-                Console.WriteLine("Please deposit more money or make another selection");
+                LocationMessage = "Please deposit more money or make another selection.";
+                //Console.WriteLine("Please deposit more money or make another selection");
             }
             else
             {
@@ -76,34 +82,44 @@ namespace Capstone.Classes
                 decimal initialBalance = Balance;
                 Balance -= Inventory[code].Price;
                 Inventory[code].Quantity--;
+                LocationMessage = "Transaction complete.";
                 TransactionLog(Inventory[code].Name + " " + code, initialBalance);
              
             }
-          
+            return LocationMessage;
         }
 
 
 
-        public void Dispense(string code)
+        public string Dispense(string code)
         {
             // print name, cost, and money remaining
             //Console.WriteLine($"{Inventory[code].Name}, {Inventory[code].Price}, {remainingMoney}");
-            if (Inventory[code].Category == "Chip")
+            if (!Inventory.ContainsKey(code))
             {
-                Console.WriteLine("Crunch Crunch, Yum!"); 
+                DispenseMessage = "Please select a valid location.";
             }
-            if (Inventory[code].Category == "Candy")
+            else if (Inventory[code].Category == "Chip")
             {
-                Console.WriteLine("Munch Munch, Yum!");
+                DispenseMessage = "Crunch Crunch, Yum!";
+                //Console.WriteLine("Crunch Crunch, Yum!"); 
             }
-            if (Inventory[code].Category == "Drink")
+            else if (Inventory[code].Category == "Candy")
             {
-                Console.WriteLine("Glug Glug, Yum!");
+                DispenseMessage = "Munch Munch, Yum!";
+                //Console.WriteLine("Munch Munch, Yum!");
             }
-            if (Inventory[code].Category == "Gum")
+            else if (Inventory[code].Category == "Drink")
             {
-                Console.WriteLine("Chew Chew, Yum!");
+                DispenseMessage = "Glug Glug, Yum!";
+                //Console.WriteLine("Glug Glug, Yum!");
             }
+            else if (Inventory[code].Category == "Gum")
+            {
+                DispenseMessage = "Chew Chew, Yum!";
+                //Console.WriteLine("Chew Chew, Yum!");
+            }
+            return DispenseMessage;
         }
 
         // Finish Transaction
